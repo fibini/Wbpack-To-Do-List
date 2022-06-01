@@ -14,7 +14,7 @@ build a To-Do-List using webpack and ES6 syntax
 
 ## Live Demo (if available)
 
-[Live Demo Link](http://127.0.0.1:5500/Microverse%20Repos/Wbpack-To-Do-List/webpack/dist/index.html)
+[Live Demo Link](http://127.0.0.1:5500/Microverse%20Repos/Wbpack-To-Do-List/dist/index.html)
 
 
 ## Getting Started
