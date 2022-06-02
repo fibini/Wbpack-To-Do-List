@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#to-do-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid gray;
+  width: 500px;
+  margin-top: 4rem;
+}
+
+#list-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+.check-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+}
+
+.dots {
+  padding-right: 10px;
+}
+
+.to-do {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid gray;
+  width: 100%;
+}
+
+.add-list {
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+.button-block {
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+
+.button {
+  height: 3rem;
+  width: 100%;
+}
+
+#add {
+  padding-left: 10px;
+  height: 3rem;
+  width: 97.3%;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding-left: 10px;
+}
+
+li {
+  list-style: none;
+}
+
+.fa-regular {
+  font-size: 20px;
+}
+
+.arrow-rotate {
+  padding-right: 10px;
+}
