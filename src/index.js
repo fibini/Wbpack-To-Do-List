@@ -2,42 +2,141 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import './style.css';
 
-const lists = [
-  {
-    description: 'wash the dishes',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'take out the trash',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'complete to do list',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'wash the car',
-    completed: false,
-    index: 1,
-  },
-];
+class Storage {
+  localStorage = (lists) => {
+    localStorage.setItem('task', JSON.stringify(lists));
+  }
 
+  getStorage = () => {
+    const getTask = JSON.parse(localStorage.getItem('task'));
+    if (getTask) {
+      return getTask;
+    }
+    return [];
+  }
+}
+// function to update local storage after each event and upon page reload
+
+const updateList = () => {
+  const lists = new Storage().getStorage();
+  document.getElementById('list-block').innerHTML = '';
+  lists.forEach((list) => {
+    let classes = 'task-description';
+    let checked = '';
+    if (list.completed) {
+      classes = 'task-description active';
+      checked = 'checked';
+    }
+    const card = `
+    <li class = "list"><div class="check-input"><input type="checkbox" class="check" id="${list.index}" name="${list.index}" value="${list.index}"${checked}>
+        <label id="label${list.index}" for="${list.index}" class="${classes}">${list.description}</label></div>
+        <span class="dots">
+        <span class="close-task" id="${list.index}">
+          <i class="fa-solid fa-rectangle-xmark"></i>
+        </span>
+        <span class="edit-task" id="${list.index}">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+        </span>
+      </span></li>`;
+    document.getElementById('list-block').innerHTML += card;
+  });
+
+  // click event variables
+
+  const removeTasks = document.querySelectorAll('.close-task');
+  const editTasks = document.querySelectorAll('.edit-task');
+  const checkBoxes = document.querySelectorAll('.check');
+
+  // checkbox functionality when box is click check appears
+
+  checkBoxes.forEach((checkBox) => {
+    checkBox.addEventListener('change', (e) => {
+      e.preventDefault();
+      const check = checkBox.getAttribute('id') * 1;
+      const localStorage = new Storage();
+      const lists = localStorage.getStorage();
+      if (checkBox.checked) {
+        lists[check - 1].completed = true;
+      } else {
+        lists[check - 1].completed = false;
+      }
+      localStorage.localStorage(lists);
+      updateList();
+    });
+  });
+
+  // edit task inside the list by using prompt when the 3 dots are clicked
+
+  editTasks.forEach((editTask) => {
+    editTask.addEventListener('click', (e) => {
+      e.preventDefault();
+      const localStorage = new Storage();
+      const lists = localStorage.getStorage();
+      const task = editTask.getAttribute('id') * 1 - 1;
+      const newTask = prompt('Change task');
+      lists[task].description = newTask;
+      localStorage.localStorage(lists);
+      updateList();
+    });
+  });
+
+  // removes task from the list
+
+  removeTasks.forEach((removeTask) => {
+    removeTask.addEventListener('click', (e) => {
+      e.preventDefault();
+      const localStorage = new Storage();
+      const index = removeTask.getAttribute('id') * 1 - 1;
+      const lists = localStorage.getStorage();
+      const taskDelete = lists.filter((item, key) => {
+        if (key !== index) {
+          return true;
+        }
+        return null;
+      });
+      for (let i = 0; i < taskDelete.length; i += 1) {
+        taskDelete[i].index = i + 1;
+      }
+      localStorage.localStorage(taskDelete);
+      updateList();
+    });
+  });
+};
+updateList();
+
+const lists = [];
 lists.sort((a, b) => a.index - b.index);
 
-lists.forEach((list) => {
-  for (let i = 0; i < lists.length; i += 1) {
-    if (lists[i] === lists.index) {
-      return;
-    }
+// Add task click event
+
+const AddtoList = document.querySelector('.add-button');
+
+AddtoList.addEventListener('click', (e) => {
+  e.preventDefault();
+  const localStorage = new Storage();
+  const lists = localStorage.getStorage();
+  const lastIndex = lists.length + 1;
+  lists.push({
+    description: document.getElementById('add').value,
+    completed: false,
+    index: lastIndex,
+  });
+  localStorage.localStorage(lists);
+  updateList();
+});
+
+// clear completed task from list
+
+const clearCompleted = document.querySelector('.button');
+
+clearCompleted.addEventListener('click', (e) => {
+  e.preventDefault();
+  const localStorage = new Storage();
+  const lists = localStorage.getStorage();
+  const checkDelete = lists.filter((lists) => lists.completed === false);
+  for (let i = 0; i < checkDelete.length; i += 1) {
+    checkDelete[i].index = i + 1;
   }
-  const card = `
-    <li class = "list"><div class="check-input"><input type="checkbox" id="${list.index}" name="${list.index}" value="${list.index}">
-        <label for="${list.index}">${list.description}</label></div>
-        <span class="dots">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-      </span></li>`;
-  document.getElementById('list-block').innerHTML += card;
+  localStorage.localStorage(checkDelete);
+  updateList();
 });
