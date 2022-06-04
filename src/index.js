@@ -1,17 +1,17 @@
-import "@fortawesome/fontawesome-free/css/all.css";
-import "@fortawesome/fontawesome-free/js/all.js";
-import "./style.css";
-import Storage from "../modules/Storage.js";
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
+import './style.css';
+import Storage from '../modules/Storage.js';
 
 const updateList = () => {
   const lists = new Storage().getStorage();
-  document.getElementById("list-block").innerHTML = "";
+  document.getElementById('list-block').innerHTML = '';
   lists.forEach((list) => {
-    let classes = "task-description";
-    let checked = "";
+    let classes = 'task-description';
+    let checked = '';
     if (list.completed) {
-      classes = "task-description active";
-      checked = "checked";
+      classes = 'task-description active';
+      checked = 'checked';
     }
     const card = `
     <li class = "list"><div class="check-input"><input type="checkbox" class="check" id="${list.index}" name="${list.index}" value="${list.index}"${checked}>
@@ -24,17 +24,17 @@ const updateList = () => {
         <i class="fa-solid fa-ellipsis-vertical"></i>
         </span>
       </span></li>`;
-    document.getElementById("list-block").innerHTML += card;
+    document.getElementById('list-block').innerHTML += card;
   });
 
-  const removeTasks = document.querySelectorAll(".close-task");
-  const editTasks = document.querySelectorAll(".edit-task");
-  const checkBoxes = document.querySelectorAll(".check");
+  const removeTasks = document.querySelectorAll('.close-task');
+  const editTasks = document.querySelectorAll('.edit-task');
+  const checkBoxes = document.querySelectorAll('.check');
 
   checkBoxes.forEach((checkBox) => {
-    checkBox.addEventListener("change", (e) => {
+    checkBox.addEventListener('change', (e) => {
       e.preventDefault();
-      const check = checkBox.getAttribute("id") * 1;
+      const check = checkBox.getAttribute('id') * 1;
       const localStorage = new Storage();
       const lists = localStorage.getStorage();
       if (checkBox.checked) {
@@ -48,12 +48,12 @@ const updateList = () => {
   });
 
   editTasks.forEach((editTask) => {
-    editTask.addEventListener("click", (e) => {
+    editTask.addEventListener('click', (e) => {
       e.preventDefault();
       const localStorage = new Storage();
       const lists = localStorage.getStorage();
-      const task = editTask.getAttribute("id") * 1 - 1;
-      const newTask = prompt("Change task");
+      const task = editTask.getAttribute('id') * 1 - 1;
+      const newTask = prompt('Change task');
       lists[task].description = newTask;
       localStorage.localStorage(lists);
       updateList();
@@ -61,10 +61,10 @@ const updateList = () => {
   });
 
   removeTasks.forEach((removeTask) => {
-    removeTask.addEventListener("click", (e) => {
+    removeTask.addEventListener('click', (e) => {
       e.preventDefault();
       const localStorage = new Storage();
-      const index = removeTask.getAttribute("id") * 1 - 1;
+      const index = removeTask.getAttribute('id') * 1 - 1;
       const lists = localStorage.getStorage();
       const taskDelete = lists.filter((item, key) => {
         if (key !== index) {
@@ -85,26 +85,26 @@ updateList();
 const lists = [];
 lists.sort((a, b) => a.index - b.index);
 
-const AddtoList = document.querySelector(".add-button");
+const AddtoList = document.querySelector('.add-button');
 
-AddtoList.addEventListener("click", (e) => {
+AddtoList.addEventListener('click', (e) => {
   e.preventDefault();
   const localStorage = new Storage();
   const lists = localStorage.getStorage();
   const lastIndex = lists.length + 1;
   lists.push({
-    description: document.getElementById("add").value,
+    description: document.getElementById('add').value,
     completed: false,
     index: lastIndex,
   });
   localStorage.localStorage(lists);
-  document.getElementById("add").value = "";
+  document.getElementById('add').value = '';
   updateList();
 });
 
-const clearCompleted = document.querySelector(".button");
+const clearCompleted = document.querySelector('.button');
 
-clearCompleted.addEventListener("click", (e) => {
+clearCompleted.addEventListener('click', (e) => {
   e.preventDefault();
   const localStorage = new Storage();
   const lists = localStorage.getStorage();
