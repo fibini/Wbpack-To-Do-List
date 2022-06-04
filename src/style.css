@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 #main {
@@ -51,14 +52,22 @@
   width: 100%;
 }
 
+#form {
+  display: flex;
+}
+
 .add-list {
   width: 100%;
   border-bottom: 2px solid gray;
 }
 
+.add-button {
+  padding-right: 10px;
+  background-color: #fff;
+}
+
 .button-block {
   width: 100%;
-  border-bottom: 2px solid gray;
 }
 
 .button {
@@ -89,4 +98,8 @@ li {
 
 .arrow-rotate {
   padding-right: 10px;
+}
+
+.task-description.active {
+  text-decoration: line-through;
 }

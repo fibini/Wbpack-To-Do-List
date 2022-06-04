@@ -11,10 +11,15 @@
       <section id="to-do-box">
         <div class="to-do">
           <h1>Today's To Do</h1>
-          <span class="arrow-rotate"><i class="fa-solid fa-arrows-rotate"></i></span>
+          <span class="arrow-rotate"
+            ><i class="fa-solid fa-arrows-rotate"></i
+          ></span>
         </div>
         <div class="add-list">
-          <input type="text" id="add" placeholder="Add to your list..." />
+          <form id="form" action="#" method="post">
+            <input type="text" id="add" placeholder="Add to your list..." />
+            <button class="add-button" type="submit">Add</button>
+          </form>
         </div>
         <ul id="list-block">
           <!--list produced from javascript-->
