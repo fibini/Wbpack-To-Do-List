@@ -38,7 +38,7 @@ git clone https://github.com/fibini/Wbpack-To-Do-List.git
 ### Run tests
 
 ### Deployment
-https://fibini.github.io/Wbpack-To-Do-List/
+https://fibini.github.io/Wbpack-To-Do-List/dist
 
 
 
