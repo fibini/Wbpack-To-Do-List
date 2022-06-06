@@ -31,7 +31,7 @@ copy the repository from the drop down code menu
 ### Install
 clone the repository to your local machine through your code editor using git clone
 
-git clone https://github.com/fibini/Portfolio-project.git
+git clone https://github.com/fibini/Wbpack-To-Do-List.git
 
 ### Usage
 
