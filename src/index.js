@@ -27,7 +27,7 @@ const updateList = () => {
     document.getElementById('list-block').innerHTML += card;
   });
 
-  const removeTasks = document.querySelectorAll('.close-task');
+  const removeTasks = document.querySelector('.close-task');
   const editTasks = document.querySelectorAll('.edit-task');
   const checkBoxes = document.querySelectorAll('.check');
 
@@ -63,9 +63,9 @@ const updateList = () => {
   removeTasks.forEach((removeTask) => {
     removeTask.addEventListener('click', (e) => {
       e.preventDefault();
-      //const localStorage = new Storage();
-      //const index = removeTask.getAttribute('id') * 1 - 1;
-      //const lists = localStorage.getStorage();
+      // const localStorage = new Storage();
+      const index = removeTask.getAttribute('id') * 1 - 1;
+      // const lists = localStorage.getStorage();
       const taskDelete = lists.filter((item, key) => {
         if (key !== index) {
           return true;
