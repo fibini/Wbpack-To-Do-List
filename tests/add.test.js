@@ -92,5 +92,3 @@ describe('Added to list', () => {
     expect(mockHtml.window.document.querySelector('.list')).toBeTruthy();
   });
 });
-
-
