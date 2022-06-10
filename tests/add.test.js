@@ -1,4 +1,5 @@
-const jsdom = require("jsdom");
+const jsdom = require('jsdom');
+
 const { JSDOM } = jsdom;
 
 const mockHtml = new JSDOM(`
@@ -41,13 +42,14 @@ const lists = [];
 lists.sort((a, b) => a.index - b.index);
 
 const updateList = () => {
-  mockHtml.window.document.getElementById("list-block").innerHTML = "";
+  // const lists = new Storage().getStorage();
+  mockHtml.window.document.getElementById('list-block').innerHTML = '';
   lists.forEach((list) => {
-    let classes = "task-description";
-    let checked = "";
+    let classes = 'task-description';
+    let checked = '';
     if (list.completed) {
-      classes = "task-description active";
-      checked = "checked";
+      classes = 'task-description active';
+      checked = 'checked';
     }
     const card = `
       <li class = "list"><div class="check-input"><input type="checkbox" class="check" id="${list.index}" name="${list.index}" value="${list.index}"${checked}>
@@ -60,7 +62,7 @@ const updateList = () => {
           <i class="fa-solid fa-ellipsis-vertical"></i>
           </span>
         </span></li>`;
-    mockHtml.window.document.getElementById("list-block").innerHTML += card;
+    mockHtml.window.document.getElementById('list-block').innerHTML += card;
   });
 };
 updateList();
@@ -68,26 +70,26 @@ updateList();
 const AddtoList = () => {
   const lastIndex = lists.length + 1;
   lists.push({
-    description: mockHtml.window.document.getElementById("add").value,
+    description: mockHtml.window.document.getElementById('add').value,
     completed: false,
     index: lastIndex,
   });
-  mockHtml.window.document.getElementById("add").value = "";
+  mockHtml.window.document.getElementById('add').value = '';
   updateList();
 };
 AddtoList();
 
-describe("Added to list", () => {
-  test("Add new task to list", () => {
-    expect((lists[0].description = "hello")).toBe("hello");
+describe('Added to list', () => {
+  test('Add new task to list', () => {
+    expect(lists[0].description = 'hello').toBe('hello');
   });
 
-  test("Added item is false", () => {
+  test('Added item is false', () => {
     expect(lists[0].completed).toBe(false);
   });
 
-  test("list has been added to html", () => {
-    expect(mockHtml.window.document.querySelector(".list")).toBeTruthy();
+  test('list has been added to html', () => {
+    expect(mockHtml.window.document.querySelector('.list')).toBeTruthy();
   });
 });
 

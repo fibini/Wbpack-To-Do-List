@@ -1,4 +1,5 @@
-const jsdom = require("jsdom");
+const jsdom = require('jsdom');
+
 const { JSDOM } = jsdom;
 
 const mockHtml = new JSDOM(`
@@ -26,27 +27,27 @@ const mockHtml = new JSDOM(`
           </form>
         </div>
         <ul id="list-block">
-            <li class ="list1"><div class="check-input"><input type="checkbox" class="check" id="check1" name="" value="">
-            <label id="label" for="" class=""></label></div>
-            <span class="dots">
-            <span class="close-task" id="">
-            <i class="fa-solid fa-rectangle-xmark"></i>
-            </span>
-            <span class="edit-task" id="">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            </span>
-            </span></li>
-            <li class ="list2"><div class="check-input"><input type="checkbox" class="check" id="check2" name="" value="">
-            <label id="label2" for="" class=""></label></div>
-            <span class="dots">
-            <span class="close-task" id="">
-            <i class="fa-solid fa-rectangle-xmark"></i>
-            </span>
-            <span class="edit-task" id="">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-            </span>
-            </span></li>
           <!--list produced from javascript-->
+          <li class = "list1"><div class="check-input"><input type="checkbox" class="check" id="check1" name="" value="">
+          <label id="label1" for="" class=""> take out the trash</label></div>
+          <span class="dots">
+          <span class="close-task" id="">
+            <i class="fa-solid fa-rectangle-xmark"></i>
+          </span>
+          <span class="edit-task" id="">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+          </span>
+        </span></li>
+        <li class = "list2"><div class="check-input"><input type="checkbox" class="check" id="check2" name="" value="">
+        <label id="label1" for="" class=""> take out the trash</label></div>
+        <span class="dots">
+        <span class="close-task" id="">
+          <i class="fa-solid fa-rectangle-xmark"></i>
+        </span>
+        <span class="edit-task" id="">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+        </span>
+      </span></li>
         </ul>
         <div class="button-block">
           <button class="button" type="submit">Clear all completed</button>
@@ -57,21 +58,18 @@ const mockHtml = new JSDOM(`
 </html>
 `);
 
- const index = mockHtml.window.document.getElementById("check1");
- const removes = (index) => {
-     index.parentElement.parentElement.remove()
- }
+const index = mockHtml.window.document.getElementById('check1');
+function remove(index) {
+  index.parentElement.parentElement.remove();
+}
 
-
-
-describe("Remove from list", () => {
-  test("is task removing from html", () => {
-      removes(index)
-    expect(mockHtml.window.document.querySelector(".list1")).toBeFalsy();
+describe('remove from list', () => {
+  test('does the task remove from html', () => {
+    remove(index);
+    expect(mockHtml.window.document.querySelector('.list1')).toBeFalsy();
   });
-
-  test('is function removing the correct task', () => {
-      removes(index)
-      expect(mockHtml.window.document.querySelector(".list2")).toBeTruthy()
-  })
+  test('is function removing correct task', () => {
+    remove(index);
+    expect(mockHtml.window.document.querySelector('.list2')).toBeTruthy();
+  });
 });
