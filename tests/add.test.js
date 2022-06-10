@@ -41,7 +41,6 @@ const lists = [];
 lists.sort((a, b) => a.index - b.index);
 
 const updateList = () => {
-  //const lists = new Storage().getStorage();
   mockHtml.window.document.getElementById("list-block").innerHTML = "";
   lists.forEach((list) => {
     let classes = "task-description";
@@ -80,14 +79,16 @@ AddtoList();
 
 describe("Added to list", () => {
   test("Add new task to list", () => {
-    expect(lists[0].description = 'hello').toBe('hello');
+    expect((lists[0].description = "hello")).toBe("hello");
   });
-  
-  test('Added item is false', () => {
-    expect(lists[0].completed).toBe(false);
-  })
 
-  test('list has been added to html', () => {
-    expect(mockHtml.window.document.querySelector(".list")).toBeTruthy()
-  })
+  test("Added item is false", () => {
+    expect(lists[0].completed).toBe(false);
+  });
+
+  test("list has been added to html", () => {
+    expect(mockHtml.window.document.querySelector(".list")).toBeTruthy();
+  });
 });
+
+
