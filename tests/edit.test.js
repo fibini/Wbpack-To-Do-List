@@ -1,4 +1,5 @@
-const jsdom = require("jsdom");
+const jsdom = require('jsdom');
+
 const { JSDOM } = jsdom;
 
 const mockHtml = new JSDOM(`
@@ -67,33 +68,33 @@ lists.sort((a, b) => a.index - b.index);
 const AddtoList = () => {
   const lastIndex = lists.length + 1;
   lists.push({
-    description: mockHtml.window.document.getElementById("add").value,
+    description: mockHtml.window.document.getElementById('add').value,
     completed: false,
     index: lastIndex,
   });
-  mockHtml.window.document.getElementById("add").value = "";
+  mockHtml.window.document.getElementById('add').value = '';
 };
 AddtoList();
 
 const prompt = () => {
-  let task = "hello";
+  const task = 'hello';
   return task;
 };
 
 const editTask = () => {
   const localStorage = new MockLocalStorage();
-  const newTask = prompt("Change task");
+  const newTask = prompt('Change task');
   lists[0].description = newTask;
   localStorage.setItem(lists);
 };
 
-describe("Edit Task", () => {
-  test("list has Task", () => {
+describe('Edit Task', () => {
+  test('list has Task', () => {
     editTask();
-    expect(lists[0].description).toBe("hello");
+    expect(lists[0].description).toBe('hello');
   });
 
-  test("task description has not been changed", () => {
+  test('task description has not been changed', () => {
     editTask();
     expect(lists[0].description.length).toBe(5);
   });
