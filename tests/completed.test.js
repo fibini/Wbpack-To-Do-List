@@ -29,7 +29,7 @@ const mockHtml = new JSDOM(`
         <ul id="list-block">
           <!--list produced from javascript-->
           <li class = "list1"><div class="check-input"><input type="checkbox" class="check" id="check1" name="" value="" checked>
-          <label id="label1" for="" class=""> take out the trash</label></div>
+          <label id="label1" for="" class="">wash car</label></div>
           <span class="dots">
           <span class="close-task" id="">
             <i class="fa-solid fa-rectangle-xmark"></i>
@@ -79,8 +79,8 @@ const clickfunction = () => {
   }
 };
 
-describe('check for click function', () => {
-  test('check for either true or false', () => {
+describe('check for completed status', () => {
+  test('check for completed task 1', () => {
     clickfunction();
     expect(lists[0].completed).toBeTruthy();
   });

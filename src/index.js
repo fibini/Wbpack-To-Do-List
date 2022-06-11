@@ -63,9 +63,9 @@ const updateList = () => {
   removeTasks.forEach((removeTask) => {
     removeTask.addEventListener('click', (e) => {
       e.preventDefault();
-      // const localStorage = new Storage();
+      const localStorage = new Storage();
       const index = removeTask.getAttribute('id') * 1 - 1;
-      // const lists = localStorage.getStorage();
+      const lists = localStorage.getStorage();
       const taskDelete = lists.filter((item, key) => {
         if (key !== index) {
           return true;
